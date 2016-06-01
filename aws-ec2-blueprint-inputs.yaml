@@ -1,0 +1,3 @@
+image: ami-f95ef58a
+size: t2.small
+agent_user: ubuntu
