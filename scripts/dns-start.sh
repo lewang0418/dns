@@ -17,21 +17,30 @@ zone "example.com" {
 EOF'
 
 # zone configuration.
-cat > /home/ubuntu/db.example.com << EOF
+cat > /etc/bind/eu-west-1.compute.internal << EOF
 ;
 ; BIND data file for local loopback interface
 ;
 \$TTL    604800
-@       IN      SOA     example.com. root.example.com. (
-                          1         	; Serial
+@       IN      SOA     eu-west-1.compute.internal. root.eu-west-1.compute.internal. (
+                          2         	; Serial
                           604800      ; Refresh
                           86400       ; Retry
                           2419200     ; Expire
                           604800 )    ; Negative Cache TTL
 ;
-@       IN      NS      example.com.
-@       IN      A       $dns_ip
+@       IN      NS      eu-west-1.compute.internal.
+;@      IN      A       127.0.0.1
+;@      IN      AAAA    ::1
+EOF
 
+cat > /home/ubuntu/db.example.com  << EOF
+; example.com
+\$ORIGIN example.com.
+\$TTL 1h
+@ IN SOA ns admin\@example.com. ( $(date +%Y%m%d%H) 1d 2h 1w 30s )
+@ NS ns
+ns A ${dns_ip}
 EOF
 
 # apparmor in Ubuntu
