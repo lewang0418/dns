@@ -6,7 +6,7 @@ node_types:
   ###########################################################
 
   dns.nodes.MonitoredServer:
-    derived_from: cloudify.openstack.nodes.Instance
+    derived_from: cloudify.openstack.nodes.Server
     properties:
       cloudify_agent:
          default:
