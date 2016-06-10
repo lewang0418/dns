@@ -14,7 +14,7 @@ inputs:
     image:
       description: >
         Image to be used when launching agent VM's
-    flavor:
+    flavor_name:
       description: >
         Flavor of the agent VM's
     agent_user:
