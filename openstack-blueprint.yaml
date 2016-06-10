@@ -32,7 +32,7 @@ node_templates:
               start:
                  implementation: scripts/dns-start.sh
                  inputs:
-                    dns_ip: { get_attribute: [dns_ip, aws_resource_id] }
+                    dns_ip: { get_attribute: [dns_ip, floating_ip_address] }
               stop: scripts/dns-stop.sh
         relationships:
             - type: cloudify.relationships.contained_in
@@ -64,5 +64,5 @@ outputs:
   endpoint:
     description: Web application endpoint
     value:
-      ip_address: { get_attribute: [ dns_ip, floating_ip_address ] }
+      dns_address: { get_attribute: [ dns_ip, floating_ip_address ] }
 
