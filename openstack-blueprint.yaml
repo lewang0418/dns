@@ -51,10 +51,9 @@ node_templates:
         properties:
             description: Security Group for DNS VM
             rules:
-                - cidr_ip: 0.0.0.0/0
-                  from_port: 53
-                  to_port: 53
-                  ip_protocol: udp
+                - remote_ip_prefix: 0.0.0.0/0
+                  port: 53
+                  protocol: udp
 
     dns_ip:
         type: cloudify.openstack.nodes.FloatingIP
